@@ -7,3 +7,52 @@ Critical Section
 Pros & Cons of Multithreading
 (http://db.cs.duke.edu/courses/spring01/cps110/slides/servers/sld023.htm)
 
+
+Threading Concepts
+------------------
+GETTING STARTED
+Introduction and Concepts
+Join and Sleep
+How Threading Works
+Threads vs Processes
+Threading’s Uses and Misuses
+Creating and Starting Threads
+Passing Data to a Thread
+Naming Threads
+Foreground vs Background
+Thread Priority
+Exception Handling
+Thread Pooling
+Thread Pooling via TPL
+Thread Pooling Without TPL
+Optimizing the Thread Pool
+BASIC SYNCHRONIZATION
++ Synchronization Essentials
++ Locking
++ Thread Safety
++ Event Wait Handles
++ Synchronization Contexts
+USING THREADS
++ Event-Based Asynch Pattern
++ BackgroundWorker
++ Interrupt and Abort
++ Safe Cancellation
++ Lazy Initialization
++ Thread-Local Storage
++ Timers
+ADVANCED THREADING
++ Nonblocking Synchronization
++ Signaling with Wait and Pulse
++ The Barrier Class
++ Reader/Writer Locks
++ Suspend and Resume
++ Aborting Threads
+PARALLEL PROGRAMMING
++ Parallel Programming
++ Why PFX?
++ PLINQ
++ The Parallel Class
++ Task Parallelism
++ Working with AggregateException
++ Concurrent Collections
++ SpinLock and SpinWait
