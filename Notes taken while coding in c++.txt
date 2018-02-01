@@ -1,0 +1,141 @@
+Notes while coding in c++11
+---------------------
+
+------------------------------------------------------------------- Smart Pointers ------------------------------------------------------------
+iso / wiki/ faq
+          If T is a derived class of some base B, then std::unique_ptr<T> is implicitly convertible to std::unique_ptr<B>. The default deleter of the resulting std::unique_ptr<B> will use operator delete for B, leading to undefined behavior unless the destructor of B is virtual. Note that std::shared_ptr behaves differently: std::shared_ptr<B> will use the operator delete for the type T and the owned object will be deleted correctly even if the destructor of B is not virtual.
+
+Unlike std::shared_ptr, std::unique_ptr may manage an object through any custom handle type that satisfies NullablePointer. This allows, for example, managing objects located in shared memory, by supplying a Deleter that defines typedef boost::offset_ptr pointer; or another fancy pointer. 
+
+
+
+------------------------------------------------------------------- Move Semantics ------------------------------------------------------------
+Move semantics and rvalue references in C++11
+https://www.cprogramming.com/c++11/rvalue-references-and-move-semantics-in-c++11.html
+
+const string& name = getName(); // ok
+string& name = getName(); // NOT ok
+
+const string&& name = getName(); // ok
+string&& name = getName(); // also ok - praise be!
+
+string me( "alex" );
+printReference(  me ); // calls the first printReference function, taking an lvalue reference
+ 
+printReference( getName() ); // calls the second printReference function, taking a mutable rvalue reference
+What does it mean to move a field of the object? If the field is a primitive type, like int, we just copy it. It gets more interesting if the field is a pointer: here, rather than allocate and initialize new memory, we can simply steal the pointer and null out the pointer in the temporary object! We know the temporary object will no longer be needed, so we can take its pointer out from under it. 
+
+
+Put a final way: both lvalue and rvalue references are lvalue expressions. The difference is that an lvalue reference must be const to hold a reference to an rvalue, whereas an rvalue reference can always hold a reference to an rvalue. It's like the difference between a pointer, and what is pointed to. The thing pointed-to came from an rvalue, but when we use rvalue reference itself, it results in an lvalue.
+
+
+
+class C {
+  C(const C&) = default;
+  C(C&&) = default;
+  C& operator=(const C&) & = default;
+  C& operator=(C&&) & = default;
+  virtual ~C() { }
+};
+
+-------------------------------------------------
+
+This is a ref-value qualifier. Here is a basic example:
+
+// t.cpp
+#include <iostream>
+
+struct test{
+  void f() &{ std::cout << "lvalue object\n"; }
+  void f() &&{ std::cout << "rvalue object\n"; }
+};
+
+int main(){
+  test t;
+  t.f(); // lvalue
+  test().f(); // rvalue
+}
+
+----------------------------------------------------
+Using the default copy or move for a class in a hierarchy is typically a disaster: given only a pointer to a base, we simply don’t know what members the derived class has (§3.2.2), so we can’t know how to copy them. So, the best thing to do is usually to delete the default copy and move operations, that is, to eliminate the default definitions of those two operations:
+
+class Shape {
+public:
+  Shape(const Shape&) =delete; // no copy operations
+  Shape& operator=(const Shape&) =delete;
+
+  Shape(Shape&&) =delete; // no move operations
+  Shape& operator=(Shape&&) =delete;
+  ˜Shape();
+    // ...
+};
+
+------------------------------------------------------ C++ 11/14 Language Features --------------------------------------------------------
+
+Trailing Return Type
+template<typename T, typename U>
+auto add(const T& x, const U& y) -> decltype(x + y)
+{
+    return x + y;
+}
+
+task<typename details::_TaskTypeFromParam<_Ty>::_Type> create_task(_Ty _Param);
+auto create_task(_Ty _Param) -> task<typename details::_TaskTypeFromParam<_Ty>::_Type>;
+
+
+http://thbecker.net/articles/auto_and_decltype/section_07.html
+http://talesofcpp.fusionfenix.com/post-14/true-story-moving-past-bind
+
+
+
+
+
+---------------------------------------------------------------- Standard Libary --------------------------------------------------------------
+
+There is one important difference between map::find() and map::operator []. While map::find() will never change the contents of map, operator [] will create an element if it does not exist. In some cases this could be very convenient, but it’s definitly a bad idea to use operator [] many times in a loop, when you do not want to add new elements. That’s why operator [] may not be used if map is passed as a const reference parameter to some function:
+
+ void f(const map<string, int>& M) { 
+      if(M["the meaning"] == 42) { // Error! Cannot use [] on const map objects! 
+      } 
+      if(M.find("the meaning") != M.end() && M.find("the meaning")->second == 42) { // Correct 
+           cout << "Don't Panic!" << endl; 
+      } 
+ } 
+
+Notice on Map and Set
+Internally map and set are almost always stored as red-black trees. We do not need to worry about the internal structure, the thing to remember is that the elements of map and set are always sorted in ascending order while traversing these containers. And that’s why it’s strongly not recommended to change the key value while traversing map or set: If you make the modification that breaks the order, it will lead to improper functionality of container’s algorithms, at least.
+
+But the fact that the elements of map and set are always ordered can be practically used while solving TopCoder problems.
+
+Another important thing is that operators ++ and — are defined on iterators in map and set. Thus, if the value 42 presents in set, and it’s not the first and the last one, than the following code will work:
+
+ set<int> S; 
+ // ... 
+ set<int>::iterator it = S.find(42); 
+ set<int>::iterator it1 = it, it2 = it; 
+ it1--; 
+ it2++; 
+ int a = *it1, b = *it2; 
+
+Here ‘a’ will contain the first neighbor of 42 to the left and ‘b’ the first one to the right.
+
+ typedef vector<int> vi; 
+ typedef vector<vi> vvi; 
+ typedef pair<int,int> ii; 
+ #define sz(a) int((a).size()) 
+ #define pb push_back 
+ #defile all(c) (c).begin(),(c).end() 
+ #define tr(c,i) for(typeof((c).begin() i = (c).begin(); i != (c).end(); i++) 
+ #define present(c,x) ((c).find(x) != (c).end()) 
+ #define cpresent(c,x) (find(all(c),x) != (c).end()) 
+
+
+Iterator Category  Ability                          Providers
+-----------------  -------------------------------  ----------------------------
+Input iterator     Reads forward                    istream
+Output iterator    Writes forward                   ostream, inserter
+Forward iterator   Reads/writes forward             forward_list,
+                                                      unordered_[multi]set,
+                                                      unordered_[multi]map
+Bidirectional it.  Reads/writes forward/backward    list, [multi]set, [multi]map
+Random access it.  Reads/writes with random access  vector, deque string, array 
