@@ -1,0 +1,51 @@
+Processor
+---------
+
+Protection Ring
+(https://en.m.wikipedia.org/wiki/Protection_ring)
+(http://www.brokenthorn.com/Resources/OSDev23.html)
+
+Something more to OS & CPU
+(http://www.brokenthorn.com/Resources/OSDev7.html)
+
+
+OS
+--
+
+Kernel Space vs User Space
+(https://unix.stackexchange.com/questions/87625/what-is-difference-between-user-space-and-kernel-space)
+
+Scheduling Algorithms
+---------------------
+
+FCFS
+SJF
+Priority Scheduling
+Round Robin (Fair amount of time to every process)
+Multilevel Queue Scheduling
+Multilevel Feedback Queue Scheduling
+
+(Waiting, Running, Ready, Terminated)
+
+
+Note: Some critical sections of code protect themselves from concurrency problems by disabling interrupts before entering the critical section and re-enabling interrupts on exiting the section.
+
+
+Thread Scheduling
+-----------------
+
+Contention Scope
+Process Contention Scope()
+System Contention Scope()
+
+
+Multiprocessor Scheduling
+-------------------------
+
+Load Sharing
+Asymmetric Multiprocessing (master-slave)
+SMP	(Processors are independent to schedule their jobs, either from a common ready queueor separate one)
+
+Processor Affinity (soft affinity/ hard affinity)
+Load Balancing (Push Migration/ Pull Migration)
+

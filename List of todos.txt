@@ -1,0 +1,19 @@
+List of stuff that I learnt while making myself capable to read/write some stuff in C++ 11/14
+----------------------------------------------------------------------------------------
+
+C++ 11/14 (Features, Capabilites)
+OOPS (Constructor, Destructor, Copy Constructor, Copy Assignment Operator, Move Constructor, Move Assignment Operator, Inheritence, Polymorphism)
+Design Patterns : Object Management -> (RAAI)
+Multi-threading & Concurrency (Pros & Cons, Threads in C++, Types of locks & mutexes, Critical Section of code)
+Iterators
+Containers (Time Complexities, Use Cases)
+Exception Handling (Code must handle runtime exceptions : in efficient manner)
+-----------------------------------------------------------------------------------------------------------------------
+Socket Programming (TCP/UDP, OSI, Sockets in C++, Sync & Async Sockets)
+g++
+OS (Interaction of user space apps with OS, user level threads & kernel level threads, scheduling algos, m/m management)
+------------------------------------------------------------------------------------------------------------------------
+CPU (x86-x64, programming m/m models LP64, ILP64, LLP64, ILP32, LP32, cache, register, CPU sync models)
+ZeroMQ (Why ? Use cases)
+
+

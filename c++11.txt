@@ -1,0 +1,60 @@
+c++11
+-----
+
+Features: nullptr, default, delete, Move Semantics(rvalue references/more specific in rvalues as xvalue/prvalue), Lambda Expressions, Smart Pointers, Automatic Type Deduction/decltype, Uniform Initalization Syntax, Multi-threading library, async(), Type Traits, Regular Expressions, Atomic Operations
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Basics:
+-------
+		. Ways of intialization in c++ (http://en.cppreference.com/w/cpp/language/initialization) (includes default-initialization)
+		. Why so many ways of doing it?  : /
+			(https://stackoverflow.com/questions/1051379/is-there-a-difference-in-c-between-copy-initialization-and-direct-initializati)
+		. When is a copy constructor called and when is a assignment operator ? Pay attention, there's a difference b/w them.
+			(http://www.fredosaurus.com/notes-cpp/oop-condestructors/copyconstructors.html)
+		. Move Semantics? Why do we need it? rvalues/lvalues
+			(http://www.bogotobogo.com/cplusplus/C11/5_C11_Move_Semantics_Rvalue_Reference.php)
+			(https://www.cprogramming.com/c++11/rvalue-references-and-move-semantics-in-c++11.html)
+			(https://stackoverflow.com/questions/3106110/what-are-move-semantics)
+			(http://thbecker.net/articles/rvalue_references/section_02.html)
+		. explicit
+			(http://www.cs.technion.ac.il/users/yechiel/c++-faq/explicit-ctors.html)
+		. default/delete
+			(https://msdn.microsoft.com/en-us/library/dn457344.aspx)
+		. We already have NULL then why do we need nullptr?
+			(https://stackoverflow.com/questions/20509734/null-vs-nullptr-why-was-it-replaced)
+		. Memory Model (just an overview)
+			(http://en.cppreference.com/w/cpp/language/memory_model)
+		. Template Programming
+			(https://www.codeproject.com/Articles/257589/An-Idiots-Guide-to-Cplusplus-Templates-Part)
+		. decltype
+			(http://thbecker.net/articles/auto_and_decltype/section_01.html)
+		. smart-pointers
+			()
+		. Reference Collapsing
+			()
+		_________________________________________ADVANCED__________________________________________________
+		. Perfect Forwarding
+			()
+		. Library Concepts -- It's important, take time to read and grasp it. -- I still haven't read it.
+			(http://en.cppreference.com/w/cpp/concept)
+		. Function Objects/Functors/Predicate , Lambda Expressions	
+			(http://www.i-programmer.info/programming/cc/2891-functors-and-function-objects.html)
+			(http://jackieokay.com/2017/01/26/functors.html)
+		. <utility>
+			(http://en.cppreference.com/w/cpp/header/utility)
+		. It's not necessary that you use Lambda expressions, it's a whole lot about choices. I don't know where do using them
+		  can provide you performance boost and where performance overheads. So, pardon me for this. : )
+		  
+		_________________________________________CONTAINERS___________________________________________________
+		. An overview of containers
+			(https://embeddedartistry.com/blog/2017/8/2/an-overview-of-c-stl-containers)
+			(http://www.cplusplus.com/reference/stl/)
+		. Time Complexity about containers / (Cheatsheet : Thanks to the guy who compiled it)
+			(https://github.com/gibsjose/cpp-cheat-sheet/blob/master/Data%20Structures%20and%20Algorithms.md)
+		
+Lambda Expression: [capture](parameters)->return_type{body}
+Automatic Type Deduction: auto  ||  typedef decltype(x*y) _typeOnMultiplying
+
+
+###############################################################################################################################################################
