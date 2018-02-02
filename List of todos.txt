@@ -2,8 +2,9 @@ List of stuff that I learnt while making myself capable to read/write some stuff
 ----------------------------------------------------------------------------------------
 
 C++ 11/14 (Features, Capabilites)
-OOPS (Constructor, Destructor, Copy Constructor, Copy Assignment Operator, Move Constructor, Move Assignment Operator, Inheritence, Polymorphism)
-Design Patterns : Object Management -> (RAAI)
+OOPS (Constructor, Destructor, Copy Constructor, Copy Assignment Operator, Move Constructor, Move Assignment Operator, Inheritence, Polymorphism, Object Management -> (RAAI))
+Design Patterns : (http://www.oodesign.com/)
+
 Multi-threading & Concurrency (Pros & Cons, Threads in C++, Types of locks & mutexes, Critical Section of code)
 Iterators
 Containers (Time Complexities, Use Cases)
