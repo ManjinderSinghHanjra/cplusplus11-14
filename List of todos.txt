@@ -15,6 +15,5 @@ g++
 OS (Interaction of user space apps with OS, user level threads & kernel level threads, scheduling algos, m/m management)
 ------------------------------------------------------------------------------------------------------------------------
 CPU (x86-x64, programming m/m models LP64, ILP64, LLP64, ILP32, LP32, cache, register, CPU sync models)
-ZeroMQ (Why ? Use cases)
 
 
